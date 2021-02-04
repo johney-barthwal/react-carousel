@@ -6,6 +6,7 @@ import ImageInfo from './ImageInfo';
 import image1 from '../../Assets/image1.jpg';
 import image2 from '../../Assets/image2.jpg';
 import image3 from '../../Assets/image3.jpg';
+import image4 from '../../Assets/image4.jpg';
 
 function Carousel(){
     //images from source 
@@ -24,6 +25,11 @@ function Carousel(){
             url : image3,
             text : "Idli",
             subText : "Rice, Coconut, fenugreek seeds..."
+        },
+        {
+            url : image4,
+            text : "Biryani",
+            subText : "Rice, Chicken, Egg..."
         }
     ];
     //render images - default to first image
@@ -39,47 +45,28 @@ function Carousel(){
             setImages([...images,imagesFromSource[currentImgIndex]]);
         }
         const carouselImage = document.querySelector(".carousel__images");
-        carouselImage.style.transform = `translateX(${imageTranslateX}px)`;
+        carouselImage.style.transform = `translateX(${imageTranslateX}%)`;
         const carouselText = document.querySelector(".carousel__info");
-        carouselText.style.transform = `translateX(${textTranslateX}px)`;
+        carouselText.style.transform = `translateX(${textTranslateX}%)`;
 
     },[imageTranslateX,textTranslateX]);
 
     //event listner for next button
     const next = (e) =>{
-        if(currentImgIndex != imagesFromSource.length-1){
+        console.log(currentImgIndex);
+        if(currentImgIndex !== imagesFromSource.length-1){
             setcurrentImgIndex(currentImgIndex+1);
-            if(window.innerWidth < 400){
-                setImageTranslateX(imageTranslateX - 200);
-                setTextTranslateX(textTranslateX - 200);
-            }
-            else if(window.innerWidth > 400 && window.innerWidth < 1240){
-                setImageTranslateX(imageTranslateX - 300);
-                setTextTranslateX(textTranslateX - 300);
-            }
-            else{
-                setImageTranslateX(imageTranslateX - 400);
-                setTextTranslateX(textTranslateX - 400);
-            } 
+            setImageTranslateX(imageTranslateX - 100);
+            setTextTranslateX(textTranslateX - 100);
         }  
     }
 
     //event listner for previous button
     const previous = (e) =>{
-        if(currentImgIndex != 0){
+        if(currentImgIndex !== 0){
             setcurrentImgIndex(currentImgIndex-1);
-            if(window.innerWidth < 400){
-                setImageTranslateX(imageTranslateX + 200);
-                setTextTranslateX(textTranslateX + 200);
-            }
-            else if(window.innerWidth > 400 && window.innerWidth < 1240){
-                setImageTranslateX(imageTranslateX + 300);
-                setTextTranslateX(textTranslateX + 300);
-            }
-            else{
-                setImageTranslateX(imageTranslateX + 400);
-                setTextTranslateX(textTranslateX + 400);
-            } 
+            setImageTranslateX(imageTranslateX + 100);
+            setTextTranslateX(textTranslateX + 100);
         }
     } 
 
